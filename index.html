@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodBhai - Order Food Online in Rangpur</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%23ff6200'/%3E%3Cpath fill='%23ffffff' d='M49.9,82.2c-2.3,0-4.5-0.9-6.2-2.6l-8.3-8.3c-1.2-1.2-1.9-2.8-1.9-4.5V52.1c0-3.4,2.8-6.2,6.2-6.2h1.6c-1.3-3-2-6.3-2-9.8c0-10.1,8.2-18.3,18.3-18.3s18.3,8.2,18.3,18.3c0,3.5-0.7,6.8-2,9.8h1.6c3.4,0,6.2,2.8,6.2,6.2v14.7c0,1.7-0.7,3.3-1.9,4.5l-8.3,8.3C54.4,81.3,52.2,82.2,49.9,82.2z M41.3,66.8h17.4v-8.4c0-1.2-1-2.2-2.2-2.2h-13c-1.2,0-2.2,1-2.2,2.2V66.8z M49.9,21.7c-7.9,0-14.3,6.4-14.3,14.3c0,3.1,1,6,2.8,8.4h23.1c1.8-2.4,2.8-5.3,2.8-8.4C64.2,28.1,57.8,21.7,49.9,21.7z'/%3E%3C/svg%3E">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #ff6200;
+            --secondary-color: #3d3d3d;
+            --background-color: #f9f9f9;
+            --white-color: #ffffff;
+            --text-color: #555;
+            --border-color: #e9e9e9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--background-color); color: var(--text-color); }
+        .page-wrapper { max-width: 1600px; margin: 0 auto; }
+
+        /* --- Header & Navigation --- */
+        header { background: var(--white-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Tiro Bangla', serif; font-size: 2em; color: var(--primary-color); font-weight: bold; }
+        .logo i { margin-right: 10px; }
+        nav { display: flex; }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--secondary-color); font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+        .header-buttons button { padding: 10px 20px; border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
+        .login-btn { background: transparent; color: var(--primary-color); }
+        .signup-btn { background: var(--primary-color); color: var(--white-color); margin-left: 10px; }
+        .login-btn:hover { background: var(--primary-color); color: var(--white-color); }
+        .menu-icon { display: none; font-size: 1.5em; cursor: pointer; }
+
+        /* --- Hero Section --- */
+        .hero-section { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.ibb.co/HDHT6tZ9/6df5d24c-24a1-417a-b317-f83d949447fc.webp'); background-size: cover; background-position: center; padding: 100px 5%; text-align: center; color: var(--white-color); }
+        .hero-section h1 { font-size: 3.5em; font-family: 'Tiro Bangla', serif; margin-bottom: 20px; }
+        .hero-section p { font-size: 1.3em; margin-bottom: 30px; }
+        .search-bar { background: var(--white-color); padding: 10px; border-radius: 12px; display: flex; max-width: 700px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .search-bar input { flex-grow: 1; border: none; padding: 15px; font-size: 1.1em; outline: none; }
+        .search-bar button { background: var(--primary-color); color: var(--white-color); border: none; padding: 0 30px; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+
+        /* --- Prank Offer Section --- */
+        .prank-offer-section { padding: 80px 5%; text-align: center; background: var(--background-color); }
+        .prank-offer-section h2 { font-size: 2.8em; font-family: 'Tiro Bangla', serif; color: var(--secondary-color); margin-bottom: 20px; }
+        .prank-offer-section p { max-width: 600px; margin: 0 auto 30px auto; }
+        .prank-button { padding: 20px 40px; font-size: 1.5em; font-weight: bold; color: var(--white-color); background: linear-gradient(45deg, #ff6b00, #ff8c00); border: none; border-radius: 15px; cursor: pointer; box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4); transition: all 0.3s; }
+        .prank-button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255, 107, 0, 0.5); }
+        #visitorCounter { margin-top: 30px; font-size: 1em; color: #888; }
+
+        /* --- Dummy Sections --- */
+        .dummy-section { padding: 60px 5%; }
+        .section-title { text-align: center; font-size: 2.5em; font-family: 'Tiro Bangla', serif; color: var(--secondary-color); margin-bottom: 40px; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .category-card { background: var(--white-color); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: all 0.3s; }
+        .category-card:hover { transform: translateY(-10px); box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
+        .category-card img { width: 100%; height: 200px; object-fit: cover; }
+        .category-card h3 { padding: 20px; font-size: 1.3em; }
+        
+        /* --- NEW: Stats Section --- */
+        .stats-section { padding: 60px 5%; background: var(--white-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .stat-card { padding: 20px; }
+        .stat-card i { font-size: 3em; color: var(--primary-color); margin-bottom: 15px; }
+        .stat-card .stat-number { font-size: 2.5em; font-weight: 700; color: var(--secondary-color); }
+        .stat-card .stat-label { font-size: 1.1em; color: var(--text-color); }
+        
+        /* --- NEW: Testimonial Section --- */
+        .testimonial-section { padding: 60px 5%; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: var(--white-color); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .testimonial-quote { font-size: 1.1em; font-style: italic; color: #666; margin-bottom: 20px; position: relative; padding-left: 30px; }
+        .testimonial-quote::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 0; font-size: 1.5em; color: var(--primary-color); opacity: 0.2; }
+        .testimonial-author { display: flex; align-items: center; }
+        .author-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px; }
+        .author-info .author-name { font-weight: bold; color: var(--secondary-color); }
+        .author-info .star-rating { color: #f1c40f; }
+
+        /* --- Footer --- */
+        footer { background: var(--secondary-color); color: #ccc; padding: 50px 5%; text-align: center; }
+        
+        /* --- Prank Modal Styling --- */
+        .prank-container-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); }
+        .prank-container { background: var(--white-color); padding: 30px 35px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); width: 100%; max-width: 500px; text-align: center; margin: 20px; }
+        .hidden { display: none; }
+        .prank-container h1 { font-size: 2em; color: var(--primary-color); }
+        .prank-container p { font-size: 1.1em; }
+        .prank-container button { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--white-color); padding: 16px 30px; border: none; border-radius: 12px; font-size: 1.3em; font-weight: bold; cursor: pointer; width: 100%; }
+        
+        /* Input Form Styling */
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #aaa; font-size: 1.1em; }
+        .styled-input { width: 100%; padding: 15px 15px 15px 50px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1.1em; font-family: 'Hind Siliguri', sans-serif; box-sizing: border-box; transition: border-color 0.3s, box-shadow 0.3s; }
+        .styled-input:focus { border-color: var(--primary-color); box-shadow: 0 0 8px rgba(255, 107, 0, 0.2); outline: none; }
+        
+        /* --- Animated Processing Screen --- */
+        .processing-animation { padding: 20px; }
+        #progress-bar-container { width: 100%; background-color: #eee; border-radius: 10px; margin: 20px 0; }
+        #progress-bar { width: 0%; height: 20px; background: linear-gradient(90deg, #ff8c00, var(--primary-color)); border-radius: 10px; transition: width 0.5s ease-in-out; }
+        #processingStatus { font-size: 1.2em; font-weight: 500; color: var(--secondary-color); height: 30px; }
+        
+        /* Other Prank Styles */
+        .coupon-code { background: #e8f5e9; border: 3px dashed #2ecc71; padding: 20px; margin: 25px 0; font-size: 1.6em; font-weight: bold; color: #27ae60; letter-spacing: 3px; }
+        .prank-message { color: #e74c3c; font-size: 2em; font-weight: 700; line-height: 1.5; }
+        .door-icon { width: 120px; margin-bottom: 20px; opacity: 0.8; }
+        
+        /* --- Social Proof Pop-up --- */
+        #socialProof { position: fixed; bottom: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.85); color: white; padding: 12px 18px; border-radius: 10px; font-size: 0.95em; z-index: 2001; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        #socialProof.show { opacity: 1; transform: translateY(0); }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            nav { display: none; } /* Hiding nav links on smaller screens */
+            .menu-icon { display: block; }
+            .hero-section h1 { font-size: 2.5em; }
+            .prank-offer-section h2 { font-size: 2.2em; }
+            .section-title { font-size: 2em; }
+            .header-buttons { display: none; }
+            .search-bar { flex-direction: column; gap: 10px; }
+            #socialProof { width: calc(100% - 40px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="mainHomepage" class="page-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="logo"><i class="fas fa-motorcycle"></i>FoodBhai</div>
+            <nav>
+                <a href="#" class="dummy-link">Home</a>
+                <a href="#" class="dummy-link">Restaurants</a>
+                <a href="#" class="dummy-link">Offers</a>
+                <a href="#" class="dummy-link">Contact</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="login-btn dummy-link">Login</button>
+                <button class="signup-btn dummy-link">Sign Up</button>
+            </div>
+            <div class="menu-icon"><i class="fas fa-bars"></i></div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1>Khudha lagle, FoodBhai ache!</h1>
+                <p>রংপুর-এর বিশাল রেস্টুরেন্ট কালেকশন থেকে আপনার প্রিয় খাবার অর্ডার করুন।</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for food or restaurants..." class="dummy-link">
+                    <button class="dummy-link">Search</button>
+                </div>
+            </section>
+
+            <!-- Prank Offer Section -->
+            <section class="prank-offer-section">
+                <h2>Grand Biriyani Fest!</h2>
+                <p>FoodBhai-এর পক্ষ থেকে শুধুমাত্র আপনার জন্য! একদম ফ্রি-তে নিন প্রিমিয়াম মাটন বিরিয়ানি। অফার সীমিত সময়ের জন্য!</p>
+                <button id="startPrankBtn" class="prank-button"><i class="fas fa-gift"></i> Grab Your Free Biriyani Now!</button>
+                <div id="visitorCounter">🔥 এই মুহূর্তে <span id="visitorCount">123</span> জন অফারটি দেখছেন!</div>
+            </section>
+
+            <!-- Dummy Category Section -->
+            <section class="dummy-section">
+                <h2 class="section-title">Popular Categories</h2>
+                <div class="category-grid">
+                    <div class="category-card"><img src="https://i.ibb.co/7tpDrKHJ/24acbb7530fb22151d3f3f1581fb947d.jpg" alt="[Biriyanir chobi]"><h3>Biriyani</h3></div>
+                    <div class="category-card"><img src="https://i.ibb.co/Xr4jcdQQ/images-1.jpg" alt="[Pizzar chobi]"><h3>Pizza</h3></div>
+                    <div class="category-card"><img src="https://i.ibb.co/SDJGK8mv/images-2.jpg" alt="[Burger-er chobi]"><h3>Burger</h3></div>
+                    <div class="category-card"><img src="https://i.ibb.co/Hf82X5YX/Chicken-Boti-Kabab-24.jpg" alt="[Kebab-er chobi]"><h3>Kebab</h3></div>
+                </div>
+            </section>
+            
+            <!-- NEW: Stats Section -->
+            <section class="stats-section">
+                <h2 class="section-title">কেন FoodBhai সেরা?</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-utensils"></i>
+                        <div class="stat-number" data-target="50000">0</div>
+                        <div class="stat-label">Biriyani Delivered</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-smile"></i>
+                        <div class="stat-number" data-target="25000">0</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-store"></i>
+                        <div class="stat-number" data-target="200">0</div>
+                        <div class="stat-label">Restaurants Partnered</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-number" data-target="4.8">0</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW: Testimonial Section -->
+            <section class="testimonial-section">
+                <h2 class="section-title">আমাদের গ্রাহকদের কথা</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">"FoodBhai theke order kora khub-i sohoj. Ar tader biriyani-ta shotti osadharon! Delivery-o khub taratari peyechi."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.ibb.co/8Dtxf9Y/author1.jpg" alt="[Customer er chobi]" class="author-img">
+                            <div class="author-info">
+                                <div class="author-name">Rahim Ahmed</div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">"Ami regularly FoodBhai use kori. Tader offer gulo khub-i bhalo. Customer service-o onek helpful."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.ibb.co/mH5P1kR/author2.jpg" alt="[Customer er chobi]" class="author-img">
+                            <div class="author-info">
+                                <div class="author-name">Sadia Islam</div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer><p>&copy; 2025 FoodBhai. All Rights Reserved. (A completely fictional service for fun)</p></footer>
+    </div>
+    
+    <!-- Prank Screens (Initially Hidden) -->
+    <div id="prankFlowContainer" class="prank-container-wrapper hidden">
+        <div class="prank-container">
+            <!-- Screen for input -->
+            <div id="inputScreen">
+                <h1>Claim Your Free Biriyani!</h1>
+                <p>আপনার নাম এবং ফোন নাম্বার দিন ফ্রী বিরিয়ানি কুপন সংগ্রহ করুন।</p>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="userNameInput" class="styled-input" placeholder="Your name">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="text" id="userPhoneInput" class="styled-input" placeholder="Phone number">
+                </div>
+                <button id="generateBtn">Generate Coupon</button>
+            </div>
+            <!-- Other Prank Screens -->
+            <div id="processingScreen" class="hidden">
+                <div class="processing-animation">
+                    <h1>Generating Your Coupon</h1>
+                    <p>Please wait a moment, <span id="processingUserName"></span>...</p>
+                    <div id="progress-bar-container">
+                        <div id="progress-bar"></div>
+                    </div>
+                    <div id="processingStatus">Initializing...</div>
+                </div>
+            </div>
+            <div id="couponScreen" class="hidden">
+                <h1>Obhinondon, <span id="userNameDisplay"></span>!</h1>
+                <p>আপনার এক্সক্লুসিভ কুপন কোড প্রস্তুত!</p>
+                <div class="coupon-code">B-O-K-A-P-A-L-T-A-M-I</div>
+                <button id="useCouponBtn">Use Coupon</button>
+            </div>
+            <div id="prankScreen" class="hidden">
+                <img src="https://i.ibb.co/YTfLTVFd/sign-exit-silhouette-man-runs-into-open-door.jpg" alt="[Khola dorjar chobi]" class="door-icon">
+                <h1 class="prank-message">ভাগ এখান থেকে, ফ্রি বিরিয়ানি খেতে আসছো হুহ!!<br>যা, বিরিয়ানি শেষ😂</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Pop-up -->
+    <div id="socialProof"></div>
+
+    <!-- Audio elements with Base64 sources to prevent loading errors -->
+    <audio id="clickSound" src="data:audio/mpeg;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUFO//8A/w==" preload="auto"></audio>
+    <audio id="successSound" src="data:audio/mpeg;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUFO//8A/w==" preload="auto"></audio>
+    <audio id="prankSound" src="data:audio/mpeg;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUFO//8A/w==" preload="auto"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        const startPrankBtn = document.getElementById('startPrankBtn');
+        const prankFlowContainer = document.getElementById('prankFlowContainer');
+        const dummyLinks = document.querySelectorAll('.dummy-link');
+
+        const screens = {
+            input: document.getElementById('inputScreen'),
+            processing: document.getElementById('processingScreen'),
+            coupon: document.getElementById('couponScreen'),
+            prank: document.getElementById('prankScreen'),
+        };
+
+        const buttons = {
+            generate: document.getElementById('generateBtn'),
+            useCoupon: document.getElementById('useCouponBtn'),
+        };
+
+        const sounds = {
+            click: document.getElementById('clickSound'),
+            success: document.getElementById('successSound'),
+            prank: document.getElementById('prankSound'),
+        };
+        
+        const otherElements = {
+            userNameInput: document.getElementById('userNameInput'),
+            userNameDisplay: document.getElementById('userNameDisplay'),
+            processingUserName: document.getElementById('processingUserName'),
+            progressBar: document.getElementById('progress-bar'),
+            processingStatus: document.getElementById('processingStatus'),
+            visitorCounter: document.getElementById('visitorCount'),
+            socialProof: document.getElementById('socialProof'),
+        };
+        
+        // --- Start Prank ---
+        startPrankBtn.addEventListener('click', () => {
+            playSound(sounds.click);
+            prankFlowContainer.classList.remove('hidden');
+            switchScreen('input');
+        });
+
+        // --- Dummy Links Alert ---
+        dummyLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('This feature is coming soon! For now, try our special Biriyani offer!');
+            });
+        });
+
+        // --- Sound Playback ---
+        function playSound(sound) {
+            if (sound && typeof sound.play === 'function') {
+                sound.currentTime = 0;
+                sound.play().catch(error => console.info(`Audio playback was prevented: ${error.name}`));
+            }
+        }
+        
+        // --- Screen Switching ---
+        function switchScreen(screenName) {
+            for (let key in screens) {
+                screens[key].classList.add('hidden');
+            }
+            screens[screenName].classList.remove('hidden');
+        }
+
+        // --- Generate Coupon Button Logic ---
+        buttons.generate.addEventListener('click', () => {
+            playSound(sounds.click);
+            const userName = otherElements.userNameInput.value || "Bondhu";
+            otherElements.processingUserName.textContent = userName; // Personalization
+            switchScreen('processing');
+            
+            let progress = 0;
+            const statusMessages = ["Connecting to server...", "Validating your request...", "Finding best biriyani in Rangpur...", "Finalizing your coupon...", "Almost done..."];
+            let messageIndex = 0;
+            otherElements.processingStatus.textContent = statusMessages[messageIndex];
+            
+            const interval = setInterval(() => {
+                progress += 5;
+                otherElements.progressBar.style.width = progress + '%';
+                if (progress % 20 === 0 && messageIndex < statusMessages.length - 1) {
+                    messageIndex++;
+                    otherElements.processingStatus.textContent = statusMessages[messageIndex];
+                }
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        playSound(sounds.success);
+                        confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                        otherElements.userNameDisplay.textContent = userName;
+                        switchScreen('coupon');
+                    }, 500);
+                }
+            }, 200);
+        });
+
+        // --- Use Coupon Button Logic ---
+        buttons.useCoupon.addEventListener('click', () => {
+            playSound(sounds.prank);
+            switchScreen('prank');
+        });
+
+        // --- Live Visitor Counter ---
+        let visitorCount = 143;
+        setInterval(() => {
+            visitorCount += Math.floor(Math.random() * 3) + 1;
+            otherElements.visitorCounter.textContent = visitorCount;
+        }, 3500);
+
+        // --- Social Proof Pop-up ---
+        const names = ["Rahul", "Sumi", "Akash", "Priya", "Sakib", "Tania", "Imran"];
+        const places = ["Shapla Chottor", "Lalbagh", "Jahaj Company Mor", "Carmichael College", "Station Road", "Dhap"];
+        setInterval(() => {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomPlace = places[Math.floor(Math.random() * places.length)];
+            otherElements.socialProof.innerHTML = `🔥 <b>${randomName}</b> এই মাত্র <b>${randomPlace}</b> থেকে কুপন ক্লেইম করেছেন!`;
+            otherElements.socialProof.classList.add('show');
+            setTimeout(() => {
+                otherElements.socialProof.classList.remove('show');
+            }, 5000);
+        }, 8000);
+
+        // --- Animated Stats Counter ---
+        const statsSection = document.querySelector('.stats-section');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let statsAnimated = false;
+
+        const animateStats = () => {
+            statNumbers.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const stepTime = 20;
+                const totalSteps = duration / stepTime;
+                const increment = target / totalSteps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        counter.innerText = target.toLocaleString(); // Add commas for thousands
+                        // Handle decimal for rating
+                        if (target < 10) counter.innerText = target.toFixed(1);
+                    } else {
+                        counter.innerText = Math.ceil(current).toLocaleString();
+                        if (target < 10) counter.innerText = current.toFixed(1);
+                    }
+                }, stepTime);
+            });
+            statsAnimated = true;
+        };
+
+        // Animate stats only when section is visible
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !statsAnimated) {
+                animateStats();
+                observer.unobserve(statsSection);
+            }
+        }, { threshold: 0.5 });
+
+        observer.observe(statsSection);
+
+    </script>
+</body>
+</html>
